@@ -2,8 +2,6 @@
 
 /// DssAutoLine.sol
 
-// Copyright (C) 2018-2020 Maker Ecosystem Growth Holdings, INC.
-
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -73,7 +71,7 @@ contract DssAutoLine {
 
     /**
         @dev Add or update an ilk
-        @param ilk    Collateral type (ex. ETH-A)
+        @param ilk    Collateral type (ex. COIN-A)
         @param line   Collateral maximum debt ceiling that can be configured [RAD]
         @param gap    Amount of collateral to step [RAD]
         @param ttl    Minimum time between increase [seconds]
@@ -87,7 +85,7 @@ contract DssAutoLine {
 
     /**
         @dev Remove an ilk
-        @param ilk    Collateral type (ex. ETH-A)
+        @param ilk    Collateral type (ex. COIN-A)
     */
     function remIlk(bytes32 ilk) external auth {
         delete ilks[ilk];
@@ -110,7 +108,7 @@ contract DssAutoLine {
     }
 
     /*** Auto-Line Update ***/
-    // @param  _ilk  The bytes32 ilk tag to adjust (ex. "ETH-A")
+    // @param  _ilk  The bytes32 ilk tag to adjust (ex. "COIN-A")
     // @return       The ilk line value as uint256
     function exec(bytes32 _ilk) external returns (uint256) {
         (uint256 Art, uint256 rate,, uint256 line,) = vat.ilks(_ilk);
